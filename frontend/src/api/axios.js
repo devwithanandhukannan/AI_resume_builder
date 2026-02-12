@@ -55,4 +55,13 @@ export const resumeAPI = {
   preview: () => API.get('/resume/preview/'),
 }
 
+export const emailAPI = {
+  generate: (data) => API.post('/email/generate/', data),
+}
+
+export const interviewAPI = {
+  generate: (data) => API.post('/interview/generate/', data),
+  checkAnswers: (data) => API.post('/interview/check-answers/', data),
+}
+
 export default API

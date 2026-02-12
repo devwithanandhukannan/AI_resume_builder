@@ -1,12 +1,14 @@
 from django.urls import path
 from . import views
 from . import resume_views
+from . import email_views
+from . import interview_views
 
 urlpatterns = [
     # Dashboard
     path('dashboard/', views.dashboard, name='dashboard'),
 
-    # Personal Info — single resource (no pk needed)
+    # Personal Info
     path('personal-info/', views.personal_info, name='personal_info'),
 
     # Additional Links
@@ -37,7 +39,14 @@ urlpatterns = [
     path('achievements/', views.achievement_list, name='achievement_list'),
     path('achievements/<int:pk>/', views.achievement_detail, name='achievement_detail'),
 
-    # Resume Generation
+    # Resume
     path('resume/generate/', resume_views.generate_resume, name='generate_resume'),
     path('resume/preview/', resume_views.resume_preview_data, name='resume_preview'),
+
+    # Cold Email
+    path('email/generate/', email_views.generate_email, name='generate_email'),
+
+    # Interview Prep
+    path('interview/generate/', interview_views.generate_questions, name='generate_questions'),
+    path('interview/check-answers/', interview_views.check_answers, name='check_answers'),
 ]

@@ -15,6 +15,8 @@ import Certifications from './pages/Certifications'
 import Achievements from './pages/Achievements'
 import AdditionalLinks from './pages/AdditionalLinks'
 import GenerateResume from './pages/GenerateResume'
+import ColdEmail from './pages/ColdEmail'
+import InterviewPrep from './pages/InterviewPrep'
 
 function PublicRoute({ children }) {
   const { user, loading } = useAuth()
@@ -23,24 +25,28 @@ function PublicRoute({ children }) {
   return children
 }
 
+function P({ children }) {
+  return <ProtectedRoute><Layout>{children}</Layout></ProtectedRoute>
+}
+
 function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
       <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
-
-      <Route path="/" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
-      <Route path="/personal-info" element={<ProtectedRoute><Layout><PersonalInfo /></Layout></ProtectedRoute>} />
-      <Route path="/education" element={<ProtectedRoute><Layout><Education /></Layout></ProtectedRoute>} />
-      <Route path="/experience" element={<ProtectedRoute><Layout><Experience /></Layout></ProtectedRoute>} />
-      <Route path="/skills" element={<ProtectedRoute><Layout><Skills /></Layout></ProtectedRoute>} />
-      <Route path="/projects" element={<ProtectedRoute><Layout><Projects /></Layout></ProtectedRoute>} />
-      <Route path="/certifications" element={<ProtectedRoute><Layout><Certifications /></Layout></ProtectedRoute>} />
-      <Route path="/achievements" element={<ProtectedRoute><Layout><Achievements /></Layout></ProtectedRoute>} />
-      <Route path="/additional-links" element={<ProtectedRoute><Layout><AdditionalLinks /></Layout></ProtectedRoute>} />
-      <Route path="/generate-resume" element={<ProtectedRoute><Layout><GenerateResume /></Layout></ProtectedRoute>} />
-
+      <Route path="/" element={<P><Dashboard /></P>} />
+      <Route path="/personal-info" element={<P><PersonalInfo /></P>} />
+      <Route path="/education" element={<P><Education /></P>} />
+      <Route path="/experience" element={<P><Experience /></P>} />
+      <Route path="/skills" element={<P><Skills /></P>} />
+      <Route path="/projects" element={<P><Projects /></P>} />
+      <Route path="/certifications" element={<P><Certifications /></P>} />
+      <Route path="/achievements" element={<P><Achievements /></P>} />
+      <Route path="/additional-links" element={<P><AdditionalLinks /></P>} />
+      <Route path="/generate-resume" element={<P><GenerateResume /></P>} />
+      <Route path="/cold-email" element={<P><ColdEmail /></P>} />
+      <Route path="/interview-prep" element={<P><InterviewPrep /></P>} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
